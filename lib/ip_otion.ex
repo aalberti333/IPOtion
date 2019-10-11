@@ -15,7 +15,7 @@ defmodule IPOtion do
 
   """
   def api_series_type(series_type) do
-    # TO DO: add more functionalities
+    # TO DO: add more functionalities (https://www.alphavantage.co/documentation/)
     case series_type do
       "TIME_SERIES_DAILY" ->
         {:ok, url_start, url_end} = {:ok, "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=", "&outputsize=full&apikey=" <> System.get_env("ALPHA_KEY")}
@@ -37,7 +37,7 @@ defmodule IPOtion do
     {:ok, response} = Mojito.request(method: :get, url: url_start <> ticker <> url_end)
     {:ok, ticker_map} = Jason.decode(response.body)
 
-    # TO DO: add more functionalities
+    # TO DO: add more functionalities (https://www.alphavantage.co/documentation/)
     case series_type do
       "TIME_SERIES_DAILY" -> ticker_map["Time Series (Daily)"]
       _ -> raise "You must select a valid api series_type. Available choices are: \"TIME_SERIES_DAILY\", ..."
