@@ -1,6 +1,6 @@
 # IPOtion
 
-Financial data library using the [Alpha Vantage API](https://www.alphavantage.co/documentation/). Used to provide technical indicators for stock prices.
+Stock analysis program using the [Alpha Vantage API](https://www.alphavantage.co/documentation/). Used to provide technical indicators for stock prices.
 
 ## Before using
 
