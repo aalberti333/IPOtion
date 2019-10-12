@@ -1,4 +1,4 @@
-defmodule IPOtion do
+defmodule IPOtion.Fetch do
   alias Mojito
   alias Jason
 
@@ -10,7 +10,7 @@ defmodule IPOtion do
   Select API series_type to use to retrieve financial data
 
   ## Examples
-      iex> IPOtion.api_select "Alpha Vantage"
+      iex> IPOtion.Fetch.api_select "Alpha Vantage"
       {:ok, <start_of_api_url_here>, <end_of_api_url_here>}
 
   """
@@ -29,11 +29,11 @@ defmodule IPOtion do
 
   ## Examples
 
-      iex> IPOtion.fetch("MSFT", url_start, url_end, series_type)
+      iex> IPOtion.Fetch.ticker_search("MSFT", url_start, url_end, series_type)
       %Mojito.Response{ body: "{<market-data-here>}" }
 
   """
-  def fetch(ticker, url_start, url_end, series_type) do
+  def ticker_search(ticker, url_start, url_end, series_type) do
     {:ok, response} = Mojito.request(method: :get, url: url_start <> ticker <> url_end)
     {:ok, ticker_map} = Jason.decode(response.body)
 
@@ -49,7 +49,7 @@ defmodule IPOtion do
 
   ## Examples
 
-      iex> IPOtion.datestr_to_datetime ticker_map
+      iex> IPOtion.Fetch.datestr_to_datetime ticker_map
       [
         {~D[1999-10-11],
         %{
