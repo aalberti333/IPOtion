@@ -64,8 +64,9 @@ defmodule IPOtion.Fetch do
 
   """
   def datestr_to_datetime(ticker_map) do
-    clean_date = Enum.map(ticker_map, fn {k, v} -> {Date.from_iso8601!(k), v} end)
-    sorted_date = Enum.sort_by(clean_date, fn {d, v} -> {{d.year, d.month, d.day}, v} end)
+    ticker_map
+    |> Enum.map(fn {k, {nk, nv}} -> {Date.from_iso8601!(k), {nk, Float.parse(nv)}} end)
+    |> Enum.sort_by(fn {d, v} -> {{d.year, d.month, d.day}, v} end)
   end
 
 end
